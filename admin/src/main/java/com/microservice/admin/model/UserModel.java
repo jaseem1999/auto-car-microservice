@@ -17,6 +17,7 @@ public class UserModel {
 	private long created_by;
 	private long updated_by;
 	private short status;
+	private short accessGmail;
 	public long getUser_id() {
 		return user_id;
 	}
@@ -88,6 +89,14 @@ public class UserModel {
 	}
 	public void setStatus(short status) {
 		this.status = status;
+	}
+	
+	
+	public short getAccessGmail() {
+		return accessGmail;
+	}
+	public void setAccessGmail(short accessGmail) {
+		this.accessGmail = accessGmail;
 	}
 	@Override
 	public String toString() {

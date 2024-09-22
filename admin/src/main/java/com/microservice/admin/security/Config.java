@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 
 import com.microservice.admin.jwt.JwtRequestFilter;
 
@@ -53,6 +55,7 @@ public class Config  extends WebSecurityConfigurerAdapter  {
 	    }
 
 
+
 	
 	@Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -63,5 +66,13 @@ public class Config  extends WebSecurityConfigurerAdapter  {
 	    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
 	        return authenticationConfiguration.getAuthenticationManager();
 	    }
+	 
+	 @Bean
+	    public HttpFirewall allowUrlEncodedDoubleSlashHttpFirewall() {
+	        StrictHttpFirewall firewall = new StrictHttpFirewall();
+	        firewall.setAllowUrlEncodedDoubleSlash(true);
+	        return firewall;
+	    }
+
 	
 }
